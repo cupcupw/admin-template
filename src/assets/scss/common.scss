@@ -1,0 +1,21 @@
+body {
+  background-color: var(--ds-body-background-color);
+}
+
+.c-flex {
+  @extend %df;
+}
+
+.c-img-preview {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.c-table-title-col {
+  font-size: j(14);
+  font-weight: bold;
+  margin-right: j(10);
+}
+.c-table-title-col-warn {
+  color: #0938ff;
+}
