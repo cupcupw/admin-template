@@ -1,11 +1,12 @@
 import { formatPathParams, isObject } from '@daysnap/utils'
 
-// import { useUserinfoStore } from '@/stores'
+import { useUserinfoStore } from '@/stores'
+
 import { formatAdapter, getAdapter } from './adapter'
 import { instance } from './instance'
 import type { CurlOptions } from './types'
 
-// export * from './adapter'
+export * from './adapter'
 
 export function curl<T = any>(url: string, data: any = {}, options: CurlOptions = {}): Promise<T> {
   const { method, adapter, headers, isStringify, ...rest } = Object.assign(
@@ -24,15 +25,15 @@ export function curl<T = any>(url: string, data: any = {}, options: CurlOptions 
     rest.mockUrl = url
   }
 
-  // const { userinfo } = useUserinfoStore()
-  // let { token } = userinfo || {}
-  // if (data.token) {
-  //   token = data.token
-  //   delete data.token
-  // }
-  // if (token) {
-  //   Object.assign(headers, { 'login-token': token })
-  // }
+  const { userinfo } = useUserinfoStore()
+  let { token } = userinfo || {}
+  if (data.token) {
+    token = data.token
+    delete data.token
+  }
+  if (token) {
+    Object.assign(headers, { 'login-token': token })
+  }
 
   // 转换 url path params
   if (!(data instanceof FormData) && isObject(data)) {
