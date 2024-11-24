@@ -39,8 +39,7 @@
   import { useAsyncTask } from '@daysnap/vue-use'
   import { VueDraggable } from 'vue-draggable-plus'
 
-  import { doFileUpload } from '@/api'
-
+  // import { doFileUpload } from '@/api'
   import { proImageUploadProps } from './types'
 
   const emits = defineEmits(['update:modelValue'])
@@ -87,20 +86,20 @@
           throw '图片不能超过20M'
         }
 
-        return doFileUpload({
-          file,
-        })
+        // return doFileUpload({
+        //   file,
+        // })
       }
 
-      const res = await Promise.all(
-        files.slice(0, max - modelValue.length).map((file) => upload(file)),
-      )
+      // const res = await Promise.all(
+      //   files.slice(0, max - modelValue.length).map((file) => upload(file)),
+      // )
 
-      let value: string | string[] = res[0]
-      if (isArray(modelValue)) {
-        value = [...modelValue, ...res]
-      }
-      emits('update:modelValue', value)
+      // let value: string | string[] = res[0]
+      // if (isArray(modelValue)) {
+      //   value = [...modelValue, ...res]
+      // }
+      // emits('update:modelValue', value)
     },
     {
       throwError: true,

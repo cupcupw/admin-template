@@ -26,8 +26,7 @@
   import { isArray } from '@daysnap/utils'
   import { useAsyncTask } from '@daysnap/vue-use'
 
-  import { doFileUpload } from '@/api'
-
+  // import { doFileUpload } from '@/api'
   import { proFileUploadProps } from './types'
 
   const emits = defineEmits(['update:modelValue'])
@@ -69,12 +68,12 @@
       }
       const { modelValue } = props
 
-      let value: any = await doFileUpload({ file })
-      if (isArray(modelValue)) {
-        value = [...modelValue, value]
-      }
+      // let value: any = await doFileUpload({ file })
+      // if (isArray(modelValue)) {
+      //   value = [...modelValue, value]
+      // }
 
-      emits('update:modelValue', value)
+      // emits('update:modelValue', value)
     },
     {
       throwError: true,
