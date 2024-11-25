@@ -39,4 +39,6 @@ export default defineRoutes([
       },
     ],
   },
+  // https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html
+  { path: '/:pathMatch(.*)*', name: '404', redirect: '/', hidden: true },
 ])

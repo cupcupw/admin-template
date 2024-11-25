@@ -1,4 +1,4 @@
-// import { doPasswordChange } from '@/api'
+import { doPasswordChange } from '@/api'
 import {
   type ProDialogFormMetadata,
   useProDialogForm,
@@ -64,7 +64,7 @@ export function usePasswordChange(options?: UseProDialogFormOptions) {
           maxWidth: '480px',
         },
         metadata,
-        // request: (params: any) => doPasswordChange(params),
+        request: (params: any) => doPasswordChange(params),
       })
       ElMessage.success('操作成功，请使用新密码登录')
     },

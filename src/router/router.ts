@@ -9,3 +9,4 @@ const createRouterOptions = (): RouterOptions => ({
 })
 
 export const router = createRouter(createRouterOptions())
+;(window as any).router = router

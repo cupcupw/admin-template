@@ -12,34 +12,34 @@
     </div>
     <template #dropdown>
       <ElDropdownMenu>
-        <ElDropdownItem>修改密码</ElDropdownItem>
-        <ElDropdownItem divided>安全退出</ElDropdownItem>
+        <ElDropdownItem @click="handlePasswordChange">修改密码</ElDropdownItem>
+        <ElDropdownItem divided @click="handleExit">安全退出</ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>
 
-  <!-- <ProDialogForm ref="proDialogFormInstance" /> -->
+  <ProDialogForm ref="proDialogFormInstance" />
 </template>
 
 <script setup lang="ts">
-  // import { usePasswordChange } from '@/hooks'
-  // import { useUserinfoStore } from '@/stores'
+  import { usePasswordChange } from '@/hooks'
+  import { useUserinfoStore } from '@/stores'
 
-  // const { userinfo, logout } = useUserinfoStore()
+  const { userinfo, logout } = useUserinfoStore()
 
   // 修改密码
-  // const [proDialogFormInstance, handlePasswordChange] = usePasswordChange({
-  //   onSuccess: () => {
-  //     logout()
-  //   },
-  // })
+  const [proDialogFormInstance, handlePasswordChange] = usePasswordChange({
+    onSuccess: () => {
+      logout()
+    },
+  })
 
   // 退出账号
-  // const handleExit = async () => {
-  //   await ElMessageBox.confirm(`确认是否退出该账号？`)
-  //   logout()
-  //   ElMessage.success(`退出成功`)
-  // }
+  const handleExit = async () => {
+    await ElMessageBox.confirm(`确认是否退出该账号？`)
+    logout()
+    ElMessage.success(`退出成功`)
+  }
 </script>
 
 <style lang="scss" scoped>

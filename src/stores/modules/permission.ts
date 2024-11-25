@@ -25,6 +25,7 @@ export const usePermissionStore = withToRefs(
     () => {
       const [permissions, setPermissions] = useState<string[]>([])
 
+      // 获取权限 更新权限
       const updatePermissions = async () => {
         // const data = await reqPermissionList()
         // setPermissions(data)

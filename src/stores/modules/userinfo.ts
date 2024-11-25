@@ -1,7 +1,7 @@
 import { useState } from '@daysnap/vue-use'
 import { defineStore } from 'pinia'
 
-// import { doUserLogout } from '@/api'
+import { doUserLogout } from '@/api'
 // import { resetRouter, router } from '@/router'
 import type { Userinfo } from '@/types'
 import { createNamespace } from '@/utils'
@@ -15,8 +15,8 @@ export const useUserinfoStore = withOut(
       const [userinfo, setUserinfo] = useState<Userinfo>()
 
       const logout = () => {
-        // doUserLogout().null()
-        // setUserinfo(void 0)
+        doUserLogout().null()
+        setUserinfo(void 0)
         // resetRouter()
         // router.replace('/login')
       }
