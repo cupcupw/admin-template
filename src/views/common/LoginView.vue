@@ -57,12 +57,11 @@
 <script setup lang="ts">
   import { useAsyncTask } from '@daysnap/vue-use'
 
-  // import { doUserLogin, doUserLogout } from '@/api'
+  import { doUserLogin } from '@/api'
   import { useForm, usePasswordChange } from '@/hooks'
   import { metadata } from '@/metadata'
   import { useUserinfoStore } from '@/stores'
   import { getTestAccountInfo } from '@/utils'
-  // import { captcha, getTestAccountInfo } from '@/utils'
 
   //配置测试账号
   const { username = '', password = '' } = getTestAccountInfo()
@@ -80,19 +79,19 @@
   )
 
   const router = useRouter()
-  // const { setUserinfo } = useUserinfoStore()
+  const { setUserinfo } = useUserinfoStore()
 
   // 修改密码
-  const [proDialogFormInstance, handlePasswordChange] = usePasswordChange({
-    onGenerate: (metadata, data) => {
-      metadata.password.props = { disabled: true, type: 'password' }
-      metadata.token = { value: data.token }
-    },
-    onSuccess: (metadata) => {
-      // doUserLogout({ token: metadata.token.value })
-      router.replace('/login')
-    },
-  })
+  // const [proDialogFormInstance, handlePasswordChange] = usePasswordChange({
+  //   onGenerate: (metadata, data) => {
+  //     metadata.password.props = { disabled: true, type: 'password' }
+  //     metadata.token = { value: data.token }
+  //   },
+  //   onSuccess: (metadata) => {
+  //     // doUserLogout({ token: metadata.token.value })
+  //     router.replace('/login')
+  //   },
+  // })
 
   // 登录
   const { loading, trigger: handleSubmit } = useAsyncTask(
@@ -102,17 +101,16 @@
 
       const { username, password } = form
       //登录
-      // const userinfo = await doUserLogin({ ...form, ...captchaParams })
-      const userinfo = {}
+      const { token } = await doUserLogin({ ...form })
       // 如果密码是初始密码 需要强制要求修改密码
-      if (password === 'whbtest') {
-        await ElMessageBox.confirm(`为了您的账号安全，首次登录请修改密码！`, '提示')
-        await handlePasswordChange({ password, ...userinfo })
-      } else {
-        // setUserinfo({ username, ...userinfo })
-        router.replace('/')
-        ElMessage.success(`登录成功`)
-      }
+      // if (password === 'whbtest') {
+      //   await ElMessageBox.confirm(`为了您的账号安全，首次登录请修改密码！`, '提示')
+      //   await handlePasswordChange({ password })
+      // } else {
+      setUserinfo({ username, token })
+      router.replace('/')
+      ElMessage.success(`登录成功`)
+      // }
     },
     {
       throwError: true,

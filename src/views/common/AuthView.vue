@@ -39,6 +39,7 @@
     }
   }
   .auth-content {
+    @extend %df1;
     @extend %df;
     @extend %fdc;
     @extend %aic;
