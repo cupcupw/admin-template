@@ -4,10 +4,9 @@
       <ElIcon>
         <User />
       </ElIcon>
-      <!-- <span>{{ userinfo?.username }}</span> -->
-      <span>whb</span>
+      <span>{{ userinfo?.username }}</span>
       <ElIcon>
-        <!-- <CaretBottom /> -->
+        <CaretBottom />
       </ElIcon>
     </div>
     <template #dropdown>
