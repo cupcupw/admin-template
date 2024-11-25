@@ -56,6 +56,7 @@
   const [queryMetadata, proTableInstance, handleRequest] = useTodoListTable()
 
   // 编辑 or 新增
+  // 这里柯里化 可以穿 onGenerate：初始化操作元数据 onSuccess confirm后的操作
   const [proDialogFormInstance, handleAddedOrUpdate] = useTodoAddedOrUpdate({
     onSuccess: () => {
       proTableInstance.value.reload()
